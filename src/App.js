@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import WeatherCard from './components/WeatherCard';
+import ThemeSwitcher from './components/ThemeSwitcher';
+import CitySearch from './components/CitySearch';
 
 function App() {
+  const [theme, setTheme] = useState('light');
+  const [city, setCity] = useState(null);
+
+  const handleCitySelect = (city) => {
+    setCity(city);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} min-h-screen`}>
+      <div className="container mx-auto py-10">
+        <ThemeSwitcher theme={theme} setTheme={setTheme} />
+        <CitySearch onCitySelect={handleCitySelect} />
+        <WeatherCard city={city}/>
+      </div>
     </div>
   );
 }
