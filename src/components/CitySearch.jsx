@@ -9,9 +9,8 @@ const CitySearch = ({ onCitySelect }) => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const API_KEY = '8de2a66998ece5d1efc05efef9111f41';
+  const API_KEY = 'bb206b84a9b841b8bf27035afd364fc3'; 
 
-  // Функция для поиска городов
   const searchCities = useCallback(async (inputValue) => {
     if (!inputValue) {
       setFilteredCities([]);
@@ -21,51 +20,40 @@ const CitySearch = ({ onCitySelect }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get('https://api.openweathermap.org/data/2.5/find', {
+      const response = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
         params: {
           q: inputValue,
-          type: 'like',
-          sort: 'population',
-          cnt: 50,
-          appid: API_KEY,
+          key: API_KEY,
+          limit: 10, 
+          countrycode: '', 
         },
       });
 
-      const cityOptions = response.data.list.map((city) => ({
-        label: `${city.name}, ${city.sys.country}`,
-        value: city.name,
+      const cityOptions = response.data.results.map((result) => ({
+        label: `${result.formatted}`,
+        value: result.geometry, 
       }));
 
-      // Фильтруем города, где введенная строка присутствует в названии
-      const filtered = cityOptions.filter((city) =>
-        city.label.toLowerCase().includes(inputValue.toLowerCase())
-      );
-
-      setFilteredCities(filtered);
+      setFilteredCities(cityOptions);
     } catch (error) {
       console.error('Error fetching cities:', error);
-      if (error.response) {
-        // Если ошибка от API, показываем подробности
-        console.error('API error:', error.response.data);
-      }
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  // Добавляем debounce для минимизации запросов
   const debouncedSearchCities = useCallback(debounce(searchCities, 500), []);
 
-  // Обработчик изменения в поле ввода
   const handleInputChange = (inputValue) => {
     setInputValue(inputValue);
-    debouncedSearchCities(inputValue); // Выполняем запрос с задержкой
+    debouncedSearchCities(inputValue);
   };
 
-  // Обработчик выбора города
   const handleCitySelect = (selectedOption) => {
     if (selectedOption) {
-      onCitySelect(selectedOption.value); // Отправляем выбранный город
+      console.log(selectedOption);
+      
+      onCitySelect(selectedOption.label); 
     }
   };
 
@@ -78,15 +66,15 @@ const CitySearch = ({ onCitySelect }) => {
           onInputChange={handleInputChange}
           options={filteredCities}
           onChange={handleCitySelect}
-          placeholder="Введите город"
+          placeholder="Enter city"
           isClearable
           isLoading={isLoading}
           isSearchable
-          className="border-2 border-gray-300 rounded-lg w-full p-3 pl-12 text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg"
+          className="border-2 border-gray-300 rounded-lg w-full p-3 pl-12 text-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg text-black"
           classNamePrefix="react-select"
         />
       </div>
-      {isLoading && <div className="text-gray-500 mt-2 animate-pulse">Загрузка...</div>}
+      {isLoading && <div className="text-gray-500 mt-2 animate-pulse">Loading...</div>}
     </div>
   );
 };

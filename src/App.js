@@ -14,8 +14,8 @@ function App() {
     <div className={`${theme === 'dark' ? 'bg-gray-900' : 'bg-white'} min-h-screen`}>
       <div className="container mx-auto py-10">
         <ThemeSwitcher theme={theme} setTheme={setTheme} />
-        <CitySearch onCitySelect={handleCitySelect} />
-        <WeatherCard city={city}/>
+        <CitySearch onCitySelect={handleCitySelect} theme={theme}/>
+        <WeatherCard city={city} theme={theme}/>
       </div>
     </div>
   );
