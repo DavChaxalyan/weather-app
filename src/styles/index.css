@@ -5,3 +5,16 @@
 body {
   @apply bg-gradient-to-r from-blue-500 via-indigo-600 to-purple-700 text-white;
 }
+
+@keyframes scale-up {
+  0% {
+    transform: scale(1.1); 
+  }
+  100% {
+    transform: scale(1); 
+  }
+}
+
+.animate-scale-up {
+  animation: scale-up 1s ease-in-out infinite; 
+}
