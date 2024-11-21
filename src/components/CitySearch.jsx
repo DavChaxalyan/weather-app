@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react';
-import axios from 'axios';
+import { searchCities } from '../services/cityService';
 import Select from 'react-select';
 import { FaSearch } from 'react-icons/fa';
 import debounce from 'lodash.debounce';
@@ -9,9 +9,7 @@ const CitySearch = ({ onCitySelect }) => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const API_KEY = 'bb206b84a9b841b8bf27035afd364fc3'; 
-
-  const searchCities = useCallback(async (inputValue) => {
+  const searchCitiesCallback = useCallback(async (inputValue) => {
     if (!inputValue) {
       setFilteredCities([]);
       return;
@@ -20,29 +18,16 @@ const CitySearch = ({ onCitySelect }) => {
     setIsLoading(true);
 
     try {
-      const response = await axios.get('https://api.opencagedata.com/geocode/v1/json', {
-        params: {
-          q: inputValue,
-          key: API_KEY,
-          limit: 10, 
-          countrycode: '', 
-        },
-      });
-
-      const cityOptions = response.data.results.map((result) => ({
-        label: `${result.formatted}`,
-        value: result.geometry, 
-      }));
-
+      const cityOptions = await searchCities(inputValue, setFilteredCities);
       setFilteredCities(cityOptions);
     } catch (error) {
-      console.error('Error fetching cities:', error);
+      console.error('Error searching cities:', error);
     } finally {
       setIsLoading(false);
     }
   }, []);
 
-  const debouncedSearchCities = useCallback(debounce(searchCities, 500), []);
+  const debouncedSearchCities = useCallback(debounce(searchCitiesCallback, 500), []);
 
   const handleInputChange = (inputValue) => {
     setInputValue(inputValue);
@@ -51,8 +36,6 @@ const CitySearch = ({ onCitySelect }) => {
 
   const handleCitySelect = (selectedOption) => {
     if (selectedOption) {
-      console.log(selectedOption);
-      
       onCitySelect(selectedOption.label); 
     }
   };
@@ -62,7 +45,7 @@ const CitySearch = ({ onCitySelect }) => {
       <div className="relative w-full max-w-md">
         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl" />
         <Select
-          value={inputValue}
+          inputValue={inputValue} 
           onInputChange={handleInputChange}
           options={filteredCities}
           onChange={handleCitySelect}

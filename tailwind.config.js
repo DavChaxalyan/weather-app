@@ -3,8 +3,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1e293b', // Основной цвет (тёмный)
-        secondary: '#fbbf24', // Жёлтый акцент
+        primary: '#1e293b', 
+        secondary: '#fbbf24', 
       },
     },
   },
