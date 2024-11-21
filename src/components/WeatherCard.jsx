@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Forecast from './Forecast';
+import { fetchWeatherData } from '../services/fetchWeatherDatas';
+import ErrorComponent from './ErrorComponent';
 
 function WeatherCard({ city, theme }) {
   const [weather, setWeather] = useState(null);
+  const [error, setError] = useState(null);
 
   function getWeatherColor(weatherType) {
-    console.log(weatherType);
-    
+
     switch (weatherType.toLowerCase()) {
       case "clear": 
         return `bg-yellow-${theme === 'dark' ? '100' : '400'} text-yellow-800 shadow-yellow-200`;
       case "clouds": 
-      console.log("adasdasdasd");
-      
         return `bg-gray-${theme === 'dark' ? '200' : '300'} text-gray-800 shadow-gray-200`;
       case "rain":
         return `bg-blue-${theme === 'dark' ? '100' : '400'} text-blue-800 shadow-blue-200`;
@@ -29,21 +28,33 @@ function WeatherCard({ city, theme }) {
   }
 
   useEffect(() => {
-    const fetchWeather = async () => {
+    const loadWeatherData = async () => {
       try {
-        const res = await axios.get(
-          `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/weather?q=${city || 'London'}&appid=8de2a66998ece5d1efc05efef9111f41&units=metric`
-        );
-        setWeather(res.data);
+        const data = await fetchWeatherData(city);
+        if (data.cod !== 200) { 
+          setError('City not found. Please try another city.');
+          setWeather(null); 
+        } else {
+          setWeather(data);
+          setError(null);
+        }
       } catch (error) {
-        console.error('Weather data loading error:', error);
+        console.error('Error fetching weather data:', error);
+        setError('Error fetching weather data. Please try again later.');
+        setWeather(null); 
       }
     };
 
-    fetchWeather();
+    loadWeatherData();
   }, [city]);
 
-  if (!weather) return <div className="text-center">Loading...</div>;
+  if (error) {
+    return <ErrorComponent message={error} />;
+  }
+
+  if (!weather || !weather.weather || weather.weather.length === 0) {
+    return <div className="text-center">Loading...</div>;
+  }
 
   return (
     <div

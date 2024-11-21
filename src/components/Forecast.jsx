@@ -1,40 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Modal from './Modal';
+import { fetchWeatherForecast } from '../services/fetchWeatherDatas';
+import ErrorComponent from './ErrorComponent';
 
 function Forecast({ city }) {
   const [loading, setLoading] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const [groupedForecast, setGroupedForecast] = useState({});
   const [selectedDay, setSelectedDay] = useState(null);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchForecast = async () => {
+    const loadForecastData = async () => {
       try {
-        const res = await axios.get(
-          `https://cors-anywhere.herokuapp.com/https://api.openweathermap.org/data/2.5/forecast?q=${city || 'London'}&appid=8de2a66998ece5d1efc05efef9111f41&units=metric`
-        );
-
-        const grouped = res.data.list.reduce((acc, item) => {
-          const date = new Date(item.dt_txt).toLocaleDateString('ru-RU');
-          if (!acc[date]) acc[date] = [];
-          acc[date].push(item);
-          return acc;
-        }, {});
-
-        setGroupedForecast(grouped);
-        setSelectedDay(Object.keys(grouped)[0]); 
+        const data = await fetchWeatherForecast(city);
+        if (!data || Object.keys(data).length === 0) {
+          setError('City not found. Please try another city.');
+        } else {
+          setGroupedForecast(data);
+          setSelectedDay(Object.keys(data)[0]);
+          setError(null); 
+        }
         setLoading(false);
       } catch (error) {
-        console.error('Error loading forecast data:', error);
+        console.error('Error fetching weather forecast data:', error);
+        setError('Error fetching weather data. Please try again later.');
         setLoading(false);
       }
     };
 
-    fetchForecast();
+    loadForecastData();
   }, [city]);
 
   if (loading) return <div className="text-center">Loading the forecast...</div>;
+
+  if (error) return <ErrorComponent message={error} />;
 
   const handleDayClick = (day) => {
     setSelectedDay(day);
