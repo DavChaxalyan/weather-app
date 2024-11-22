@@ -1,70 +1,92 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+**Weather App** is a modern weather forecasting application built using **React**, **Tailwind CSS**, and **Express.js** for handling requests and displaying data. The app allows users to search for cities using an intelligent search, view the weather forecast for several days ahead, and switch between light and dark themes for comfort. A detailed hourly forecast is available when clicking on forecast items.
 
-In the project directory, you can run:
+Weather data is provided through the **OpenWeather API**, and city search is powered by the **OpenCageData API**.
 
-### `npm start`
+## Features
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Smart City Search**: As you type in the search bar, multiple city suggestions are automatically provided based on your input.
+- **Weather Forecast**: View a multi-day weather forecast with information about temperature, humidity, wind speed, and weather conditions.
+- **Hourly Forecast**: Get detailed hourly forecasts by clicking on forecast items.
+- **Light and Dark Themes**: Switch between light and dark themes for a more comfortable experience.
+- **Responsive Design**: The app is fully responsive, adapting to different screen sizes using **Tailwind CSS**.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
 
-### `npm test`
+- **Frontend**: React, Tailwind CSS
+- **Backend**: Express.js
+- **APIs**:
+  - OpenWeather API (for weather forecasts)
+  - OpenCageData API (for city search)
+- **Other**: Node.js, npm
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Installation
 
-### `npm run build`
+### Requirements
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Make sure you have the following installed on your machine:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Node.js** (with npm) — Download and install from the [official website](https://nodejs.org/).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation Steps
 
-### `npm run eject`
+1. **Clone the repository**:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   git clone https://github.com/DavChaxalyan/weather-app.git
+Navigate to the project directory:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+bash
+Copy code
+cd weather-app
+Install frontend dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+bash
+Copy code
+npm install
+Set up the backend:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Navigate to the server directory:
 
-## Learn More
+bash
+Copy code
+cd server
+Install server dependencies:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+bash
+Copy code
+npm install
+Start the server:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+bash
+Copy code
+node server.js
+Run the frontend:
 
-### Code Splitting
+Return to the root project directory:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+bash
+Copy code
+cd ..
+Start the React development server:
 
-### Analyzing the Bundle Size
+bash
+Copy code
+npm run start
+Open your browser and go to http://localhost:3000 to view the app.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Usage
+City Search: Type a city name in the search bar, and the app will provide several suggestions based on the input. Select the desired city to view its weather forecast.
+View Forecast Details: Click on any forecast item to see detailed hourly weather data.
+Switch Themes: Toggle between light and dark themes using the theme switcher for better comfort.
+API Keys
+This project already includes pre-configured API keys for OpenWeather and OpenCageData, so you do not need to obtain or set up your own API keys. Simply follow the installation steps to get started with the app.
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Acknowledgements
+OpenWeather for providing weather data.
+OpenCageData for offering city search functionality.
+Tailwind CSS for providing an efficient and flexible CSS framework.
+React for enabling powerful and fast development of user interfaces.
