@@ -40,49 +40,51 @@ Make sure you have the following installed on your machine:
 
 2. **Navigate to the project directory**:
 
-  ```bash
-  cd weather-app
+    ```bash
+    cd weather-app
 
 3. **Install frontend dependencies**:
 
-  ```bash
-  npm install
+    ```bash
+    npm install
 
 4. **Set up the backend**:
 -Navigate to the server directory:
 
-  ```bash
-  cd server
+    ```bash
+    cd server
 
 5. **Install server dependencies**:
 
-  ```bash
-  npm install
+    ```bash
+    npm install
 
 6. **Start the server**:
 
-  ```bash
-  node server.js
+    ```bash
+    node server.js
 
 7. **Run the frontend**:
 -Return to the root project directory:
 
-  ```bash
-  cd ..
+    ```bash
+    cd ..
 
 8. **Start the React development server**:
 
-  ```bash
-  npm run start
+    ```bash
+    npm run start
 
 9. **Open your browser and go to http://localhost:3000 to view the app**.
 
 ### Usage
+
 **City Search**: Type a city name in the search bar, and the app will provide several suggestions based on the input. Select the desired city to view its weather forecast.
 **View Forecast Details**: Click on any forecast item to see detailed hourly weather data.
 **Switch Themes**: Toggle between light and dark themes using the theme switcher for better comfort.
 
 ### API Keys
+
 This project already includes pre-configured API keys for OpenWeather and OpenCageData, so you do not need to obtain or set up your own API keys. Simply follow the installation steps to get started with the app.
 
 ### Acknowledgements
