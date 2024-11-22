@@ -8,22 +8,21 @@ function WeatherCard({ city, theme }) {
   const [error, setError] = useState(null);
 
   function getWeatherColor(weatherType) {
-
     switch (weatherType.toLowerCase()) {
       case "clear": 
-        return `bg-yellow-${theme === 'dark' ? '100' : '400'} text-yellow-800 shadow-yellow-200`;
+        return `${theme === 'dark' ? 'bg-yellow-100' : 'bg-[#dfdf64]'} text-yellow-800 shadow-yellow-200`;
       case "clouds": 
-        return `bg-gray-${theme === 'dark' ? '200' : '300'} text-gray-800 shadow-gray-200`;
+        return `${theme === 'dark' ? 'bg-gray-200' : 'bg-gray-300'} text-gray-800 shadow-gray-200`;
       case "rain":
-        return `bg-blue-${theme === 'dark' ? '100' : '400'} text-blue-800 shadow-blue-200`;
+        return `${theme === 'dark' ? 'bg-blue-100' : 'bg-blue-400'} text-blue-800 shadow-blue-200`;
       case "snow": 
-        return `bg-${theme === 'dark' ? 'white' : 'gray-200'} text-gray-700 shadow-gray-300`;
+        return `${theme === 'dark' ? 'bg-white' : 'bg-gray-200'} text-gray-700 shadow-gray-300`;
       case "thunderstorm": 
-        return `bg-purple-${theme === 'dark' ? '100' : '400'} text-purple-900 shadow-purple-300`;
+        return `${theme === 'dark' ? 'bg-purple-100' : 'bg-purple-400'} text-purple-900 shadow-purple-300`;
       case "drizzle": 
-        return `bg-blue-${theme === 'dark' ? '50' : '300'} text-blue-600 shadow-blue-100`;
+        return `${theme === 'dark' ? 'bg-blue-50' : 'bg-blue-300'} text-blue-600 shadow-blue-100`;
       default: 
-        return `bg-green-${theme === 'dark' ? '100' : '400'} text-green-800 shadow-green-200`;
+        return `${theme === 'dark' ? 'bg-green-100' : 'bg-green-400'} text-green-800 shadow-green-200`;
     }
   }
 

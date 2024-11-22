@@ -3,6 +3,7 @@ import { searchCities } from '../services/cityService';
 import Select from 'react-select';
 import { FaSearch } from 'react-icons/fa';
 import debounce from 'lodash.debounce';
+import Loader from './Loader';
 
 const CitySearch = ({ onCitySelect }) => {
   const [inputValue, setInputValue] = useState('');
@@ -41,7 +42,7 @@ const CitySearch = ({ onCitySelect }) => {
   };
 
   return (
-    <div className="w-full flex justify-center items-center p-4">
+    <div className="max-w-[400px] w-full flex justify-center items-center p-4">
       <div className="relative w-full max-w-md">
         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-xl" />
         <Select
@@ -57,7 +58,7 @@ const CitySearch = ({ onCitySelect }) => {
           classNamePrefix="react-select"
         />
       </div>
-      {isLoading && <div className="text-gray-500 mt-2 animate-pulse">Loading...</div>}
+      {isLoading && <Loader />}
     </div>
   );
 };
