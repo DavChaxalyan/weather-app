@@ -15,6 +15,6 @@ export const searchCities = async (inputValue, setFilteredCities) => {
     }
   } catch (error) {
     console.error('Error searching cities:', error);
-    throw new Error('Ошибка при поиске городов');
+    throw new Error('Error searching for cities');
   }
 };

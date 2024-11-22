@@ -5,7 +5,7 @@ export const fetchWeatherData = async (city) => {
     return data
   } catch (error) {
     console.error('Error fetching weather data:', error);
-    throw new Error('Ошибка при получении данных о погоде');
+    throw new Error('Error retrieving weather data');
   }
 };
 
@@ -16,6 +16,6 @@ export const fetchWeatherForecast = async (city) => {
     return data;
   } catch (error) {
     console.error('Error fetching weather forecast data:', error);
-    throw new Error('Ошибка при получении прогноза погоды');
+    throw new Error('Error retrieving the weather forecast');
   }
 };
