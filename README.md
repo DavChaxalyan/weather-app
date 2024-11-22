@@ -37,56 +37,56 @@ Make sure you have the following installed on your machine:
 
    ```bash
    git clone https://github.com/DavChaxalyan/weather-app.git
-Navigate to the project directory:
 
-bash
-Copy code
-cd weather-app
-Install frontend dependencies:
+2. **Navigate to the project directory**:
 
-bash
-Copy code
-npm install
-Set up the backend:
+  ```bash
+  cd weather-app
 
-Navigate to the server directory:
+3. **Install frontend dependencies**:
 
-bash
-Copy code
-cd server
-Install server dependencies:
+  ```bash
+  npm install
 
-bash
-Copy code
-npm install
-Start the server:
+4. **Set up the backend**:
+-Navigate to the server directory:
 
-bash
-Copy code
-node server.js
-Run the frontend:
+  ```bash
+  cd server
 
-Return to the root project directory:
+5. **Install server dependencies**:
 
-bash
-Copy code
-cd ..
-Start the React development server:
+  ```bash
+  npm install
 
-bash
-Copy code
-npm run start
-Open your browser and go to http://localhost:3000 to view the app.
+6. **Start the server**:
 
-Usage
-City Search: Type a city name in the search bar, and the app will provide several suggestions based on the input. Select the desired city to view its weather forecast.
-View Forecast Details: Click on any forecast item to see detailed hourly weather data.
-Switch Themes: Toggle between light and dark themes using the theme switcher for better comfort.
-API Keys
+  ```bash
+  node server.js
+
+7. **Run the frontend**:
+-Return to the root project directory:
+
+  ```bash
+  cd ..
+
+8. **Start the React development server**:
+
+  ```bash
+  npm run start
+
+9. **Open your browser and go to http://localhost:3000 to view the app**.
+
+### Usage
+**City Search**: Type a city name in the search bar, and the app will provide several suggestions based on the input. Select the desired city to view its weather forecast.
+**View Forecast Details**: Click on any forecast item to see detailed hourly weather data.
+**Switch Themes**: Toggle between light and dark themes using the theme switcher for better comfort.
+
+### API Keys
 This project already includes pre-configured API keys for OpenWeather and OpenCageData, so you do not need to obtain or set up your own API keys. Simply follow the installation steps to get started with the app.
 
-Acknowledgements
-OpenWeather for providing weather data.
-OpenCageData for offering city search functionality.
-Tailwind CSS for providing an efficient and flexible CSS framework.
-React for enabling powerful and fast development of user interfaces.
+### Acknowledgements
+**OpenWeather** for providing weather data.
+**OpenCageData** for offering city search functionality.
+**Tailwind CSS** for providing an efficient and flexible CSS framework.
+**React** for enabling powerful and fast development of user interfaces.
