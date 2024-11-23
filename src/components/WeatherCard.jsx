@@ -85,7 +85,7 @@ function WeatherCard({ city, theme }) {
   <div className="mt-6 border-t-2 border-blue-200"></div>
 
   <div className="mt-6">
-    <Forecast city={city} />
+    <Forecast city={city || "Yerevan"} />
   </div>
 </div>
 

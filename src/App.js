@@ -17,7 +17,7 @@ function App() {
           <CitySearch onCitySelect={handleCitySelect} theme={theme}/>
           <ThemeSwitcher theme={theme} setTheme={setTheme} />
         </div>
-        <WeatherCard city={city} theme={theme}/>
+        <WeatherCard city={city || "Yerevan"} theme={theme}/>
       </div>
     </div>
   );
